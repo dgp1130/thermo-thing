@@ -2,10 +2,12 @@ package com.douglasgparker.thermothing
 
 // Object representing and controlling the attached thermostat
 object Thermostat {
+    // Actual temperature in celsius
     val actualTemp: Float
-        inline get() = 100f
+        inline get() = 38f
 
-    private var _desiredTemp = 72f
+    // Desired temperature in celsius
+    private var _desiredTemp = 23f
     var desiredTemp: Float
         get() = _desiredTemp
         set(value) {
