@@ -4,8 +4,6 @@ import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import com.github.salomonbrys.kotson.*
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import spark.Request
 
 /**
@@ -60,9 +58,5 @@ class ThermoActivity : Activity() {
 
     // Extract the body of the request parsed as JSON
     data class TempArgs(val temp: Float)
-    val gson: Gson = GsonBuilder().registerTypeAdapter<TempArgs> {
-        serialize { jsonObject("temp" to it.src.temp.toJson()) }
-        deserialize { TempArgs(it.json["temp"].asFloat) }
-    }.create()
     inline fun <reified T : Any> Request.json() = gson.fromJson<T>(body() ?: "")
 }
