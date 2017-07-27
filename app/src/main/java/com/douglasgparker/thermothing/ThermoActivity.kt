@@ -3,7 +3,7 @@ package com.douglasgparker.thermothing
 import android.app.Activity
 import android.os.Bundle
 import android.util.Log
-import com.github.salomonbrys.kotson.*
+import com.github.salomonbrys.kotson.fromJson
 import spark.Request
 
 /**
@@ -31,13 +31,20 @@ class ThermoActivity : Activity() {
         // Initialize server
         Server.serve(PORT) {
             // Get the actual temperature and return it
-            get("/actual-temp") { _, _ -> Thermostat.actualTemp }
+            get("/actual-temp") { _, _ ->
+                Log.v(TAG, "GET /actual-temp")
+                Thermostat.actualTemp
+            }
 
             // Get the currently desired temperature
-            get("/desired-temp") { _, _ -> Thermostat.desiredTemp }
+            get("/desired-temp") { _, _ ->
+                Log.v(TAG, "GET /desired-temp")
+                Thermostat.desiredTemp
+            }
 
             // Change the currently desired temperature to the given value
             post("/desired-temp") { req, res ->
+                Log.v(TAG, "POST /desired-temp")
                 val args: TempArgs
 
                 try {

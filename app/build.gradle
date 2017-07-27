@@ -38,4 +38,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     compile 'com.sparkjava:spark-core:2.3'
     compile 'com.github.salomonbrys.kotson:kotson:2.5.0'
+    compile 'com.google.android.things.contrib:driver-pwmservo:0.2'
 }
